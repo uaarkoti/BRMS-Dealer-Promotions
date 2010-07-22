@@ -1,0 +1,197 @@
+#created on: Jul 19, 2010
+package org.jboss.dealer
+
+expander Programs.dsl
+
+rule "0 to 90 percent and 0-9 units"
+	dialect "mvel"
+
+	when
+		Dealer attainment percentage greater than 0 and less than 0.9 and attainment quantity greater than 0 and less than 9
+		Calculate number of Lancers
+		Calculate number of Vehicles
+	then 
+		#actions
+		Retract dealer;
+		Log ruleName;
+end
+
+rule "0-90 percent and 10-19 units"
+	dialect "mvel"
+
+	when
+		Dealer attainment percentage greater than 0 and less than 0.9 and attainment quantity greater than 10 and less than 19
+		Calculate number of Lancers
+		Calculate number of Vehicles
+	then 
+		#actions
+		Add reward amount of 100 per Lancer
+		Add reward amount of 400 per Non Lancer
+		Retract dealer;
+		Log ruleName;
+end
+
+rule "0-90 percent and 20-29 units"
+	dialect "mvel"
+
+	when
+		Dealer attainment percentage greater than 0 and less than 0.9 and attainment quantity greater than 20 and less than 29
+		Calculate number of Lancers
+		Calculate number of Vehicles
+	then 
+		#actions
+		Add reward amount of 200 per Lancer
+		Add reward amount of 800 per Non Lancer
+		Retract dealer;
+		Log ruleName;
+end
+
+rule "0-90 percent and 30-39 units"
+	dialect "mvel"
+
+	when
+		Dealer attainment percentage greater than 0 and less than 0.9 and attainment quantity greater than 30 and less than 39
+		Calculate number of Lancers
+		Calculate number of Vehicles
+	then 
+		#actions
+		Add reward amount of 300 per Lancer
+		Add reward amount of 1200 per Non Lancer
+		Retract dealer;
+		Log ruleName;
+end
+
+rule "90 to 110 percent and 0-9 units"
+	dialect "mvel"
+	
+	when
+		Dealer attainment percentage greater than 0.9 and less than 1.1 and attainment quantity greater than 0 and less than 9
+		Calculate number of Lancers
+		Calculate number of Vehicles
+	then 
+		#actions
+		Add reward amount of 100 per Lancer
+		Add reward amount of 400 per Non Lancer
+		Retract dealer
+		Log ruleName;
+end
+
+rule "90 to 110 percent and 10-19 units"
+	dialect "mvel"
+	
+	when
+		Dealer attainment percentage greater than 0.9 and less than 1.1 and attainment quantity greater than 10 and less than 19
+		Calculate number of Lancers
+		Calculate number of Vehicles
+	then 
+		#actions
+		Add reward amount of 100 per Lancer
+		Add reward amount of 400 per Non Lancer
+		Retract dealer
+		Log ruleName;
+end
+
+rule "90 to 110 percent and 20-29"
+	dialect "mvel"
+	
+	when
+		Dealer attainment percentage greater than 0.9 and less than 1.1 and attainment quantity greater than 20 and less than 29
+		Calculate number of Lancers
+		Calculate number of Vehicles
+	then 
+		#actions
+		Add reward amount of 200 per Lancer
+		Add reward amount of 800 per Non Lancer
+		Retract dealer
+		Log ruleName;
+end
+
+rule "90 to 110 percent and 30-39"
+	dialect "mvel"
+	
+	when
+		Dealer attainment percentage greater than 0.9 and less than 1.1 and attainment quantity greater than 30 and less than 39
+		Calculate number of Lancers
+		Calculate number of Vehicles
+	then 
+		#actions
+		Add reward amount of 300 per Lancer
+		Add reward amount of 1200 per Non Lancer
+		Retract dealer
+		Log ruleName;
+end
+
+rule "110 to 130 percent and 10 - 19 units"
+	dialect "mvel"
+	
+	when
+		Dealer attainment percentage greater than 1.1 and less than 1.3 and attainment quantity greater than 10 and less than 19
+		Calculate number of Lancers
+		Calculate number of Vehicles
+	then 
+		#actions
+		Add reward amount of 200 per Lancer
+		Add reward amount of 800 per Non Lancer
+		Retract dealer
+		Log ruleName;
+end
+
+rule "110 to 130 percent and 20 - 29 units"
+	dialect "mvel"
+	
+	when
+		Dealer attainment percentage greater than 1.1 and less than 1.3 and attainment quantity greater than 20 and less than 29
+		Calculate number of Lancers
+		Calculate number of Vehicles
+	then 
+		#actions
+		Add reward amount of 200 per Lancer
+		Add reward amount of 800 per Non Lancer
+		Retract dealer
+		Log ruleName;
+end
+
+rule "110 to 130 percent and 30 - 39 units"
+	dialect "mvel"
+	
+	when
+		Dealer attainment percentage greater than 1.1 and less than 1.3 and attainment quantity greater than 30 and less than 39
+		Calculate number of Lancers
+		Calculate number of Vehicles
+	then 
+		#actions
+		Add reward amount of 300 per Lancer
+		Add reward amount of 1200 per Non Lancer
+		Retract dealer
+		Log ruleName;
+end
+
+rule "130 to 150 percent and 30 - 39 units"
+	dialect "mvel"
+	
+	when
+		Dealer attainment percentage greater than 1.3 and less than 1.5 and attainment quantity greater than 30 and less than 39
+		Calculate number of Lancers
+		Calculate number of Vehicles
+	then 
+		#actions
+		Add reward amount of 300 per Lancer
+		Add reward amount of 1200 per Non Lancer
+		Retract dealer
+		Log ruleName;
+end
+
+rule "150 and above percent or 40+ units"
+	dialect "mvel"
+	
+	when
+		Dealer attainment percentage greater than 1.5 or attainment quantity greater than 40
+		Calculate number of Lancers
+		Calculate number of Vehicles
+	then 
+		#actions
+		Add reward amount of 400 per Lancer
+		Add reward amount of 1600 per Non Lancer
+		Retract dealer
+		Log ruleName;
+end

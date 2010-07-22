@@ -1,0 +1,80 @@
+#created on: Jul 19, 2010
+package org.jboss.dealer
+
+import org.jboss.dealer.Dealer;
+import org.jboss.dealer.Vehicle;
+
+rule "0 to 90 percent sale award"
+	dialect "mvel"
+	
+	when
+		$dealer : Dealer((attainment >= 0 && < (0.9 * objective)) || (attainment >= 0 && <= 9) )
+		$vehicleCount : Double()
+			from accumulate (v : Vehicle(), count (v))
+		$lancerCount : Double()
+			from accumulate (v : Vehicle (model == 'Lancer'),count (v))
+	then 
+		#actions
+		$dealer.setTotalAward( $dealer.getTotalAward());
+end
+
+rule "90 to 110 percent sale award"
+	dialect "mvel"
+	salience 2
+	when
+		$dealer : Dealer( (attainment >= (0.9 * objective) && attainment < (1.1 * objective)) || (attainment >= 10 && <= 19))
+		$vehicleCount : Double()
+			from accumulate (v : Vehicle(), count (v))
+		$lancerCount : Double()
+			from accumulate (v : Vehicle (model == 'Lancer'),count (v))
+	then 
+		#actions
+		$dealer.setTotalAward( $dealer.getTotalAward() + $lancerCount * 100);
+		$dealer.setTotalAward( $dealer.getTotalAward() + ($vehicleCount - $lancerCount) * 400);
+end
+
+rule "110 to 130 percent sale award"
+	dialect "mvel"
+	
+	when
+		$dealer : Dealer((attainment >= 20 && <= 29) || (attainment >= (1.1 * objective) && < (1.3 * objective)))
+		$vehicleCount : Double()
+			from accumulate (v : Vehicle(), count (v))
+		$lancerCount : Double()
+			from accumulate (v : Vehicle (model == 'Lancer'),count (v))
+	then 
+		#actions
+		$dealer.setTotalAward( $dealer.getTotalAward() + $lancerCount * 200);
+		$dealer.setTotalAward( $dealer.getTotalAward() + ($vehicleCount - $lancerCount) * 800);
+end
+
+rule "130 to 150 percent sale award"
+	dialect "mvel"
+	
+	when
+		$dealer : Dealer((attainment >= 30 && <= 39) || (attainment >= (1.3 * objective) && < (1.5 * objective)))
+		$vehicleCount : Double()
+			from accumulate (v : Vehicle(), count (v))
+		$lancerCount : Double()
+			from accumulate (v : Vehicle (model == 'Lancer'),count (v))
+	then 
+		#actions
+		$dealer.setTotalAward( $dealer.getTotalAward() + $lancerCount * 300);
+		$dealer.setTotalAward( $dealer.getTotalAward() + ($vehicleCount - $lancerCount) * 1200);
+end
+
+rule "150 and above percent sale award"
+	dialect "mvel"
+	
+	when
+		$dealer : Dealer((attainment >= 40) || (attainment >= (1.5 * objective)))
+		$vehicleCount : Double()
+			from accumulate (v : Vehicle(), count (v))
+		$lancerCount : Double()
+			from accumulate (v : Vehicle (model == 'Lancer'),count (v))
+	then 
+		#actions
+		$dealer.setTotalAward( $dealer.getTotalAward() + $lancerCount * 400);
+		$dealer.setTotalAward( $dealer.getTotalAward() + ($vehicleCount - $lancerCount) * 1600);
+end
+
