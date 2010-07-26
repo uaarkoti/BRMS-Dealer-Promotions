@@ -1,0 +1,129 @@
+#created on: Jul 22, 2010
+package org.jboss.dealer
+
+#list any import classes here.
+
+
+
+#declare any global variables here
+
+dialect "mvel"
+
+
+rule "0 to 90 percent"
+	when
+		$dealer : Dealer(attainment >= (0 * objective) && attainment < (0.9 * objective))
+		$lancers: Double() from accumulate (v : Vehicle (model == 'Lancer'),count (v))
+		$vehicles : Double() from accumulate (v : Vehicle (model != 'Raiders' && != 'Endeavor'),count (v))
+	then 
+		#actions
+		//retract($dealer);;
+		System.out.println(drools.rule.name);;
+end
+
+rule "90 to 110 percent"
+	when
+		$dealer : Dealer(attainment >= (0.9 * objective) && attainment < (1.1 * objective))
+		$lancers: Double() from accumulate (v : Vehicle (model == 'Lancer'),count (v))
+		$vehicles : Double() from accumulate (v : Vehicle (model != 'Raiders' && != 'Endeavor'),count (v))
+	then 
+		#actions
+		//retract($dealer);
+		$dealer.checkAndSetTotalAward(100 * $lancers + 400 * ($vehicles - $lancers));
+		System.out.println(drools.rule.name);;
+end
+
+rule "110 to 130 percent"
+	when
+		$dealer : Dealer(attainment >= (1.1 * objective) && attainment < (1.3 * objective))
+		$lancers: Double() from accumulate (v : Vehicle (model == 'Lancer'),count (v))
+		$vehicles : Double() from accumulate (v : Vehicle (model != 'Raiders' && != 'Endeavor'),count (v))
+	then 
+		#actions
+		//retract($dealer);
+		$dealer.checkAndSetTotalAward(200 * $lancers + 800 * ($vehicles - $lancers));
+		System.out.println(drools.rule.name);;
+end
+
+rule "130 to 150 percent"
+	when
+		$dealer : Dealer(attainment >= (1.3 * objective) && attainment < (1.5 * objective))
+		$lancers: Double() from accumulate (v : Vehicle (model == 'Lancer'),count (v))
+		$vehicles : Double() from accumulate (v : Vehicle (model != 'Raiders' && != 'Endeavor'),count (v))
+	then 
+		#actions
+		//retract($dealer);
+		$dealer.checkAndSetTotalAward(300 * $lancers + 1200 * ($vehicles - $lancers));
+		System.out.println(drools.rule.name);;
+end
+
+rule "150 percent and greater"
+	when
+		$dealer : Dealer(attainment >= (1.5 * objective))
+		$lancers: Double() from accumulate (v : Vehicle (model == 'Lancer'),count (v))
+		$vehicles : Double() from accumulate (v : Vehicle (model != 'Raiders' && != 'Endeavor'),count (v))
+	then 
+		#actions
+		//retract($dealer);
+		$dealer.checkAndSetTotalAward(400 * $lancers + 1600 * ($vehicles - $lancers));
+		System.out.println(drools.rule.name);;
+end
+
+rule "0-9 units"
+	when
+		$dealer : Dealer(attainment >= 0 && <= 9)
+		$lancers: Double() from accumulate (v : Vehicle (model == 'Lancer'),count (v))
+		$vehicles : Double() from accumulate (v : Vehicle (model != 'Raiders' && != 'Endeavor'),count (v))
+	then 
+		#actions
+		//retract($dealer);
+		System.out.println(drools.rule.name);;
+end
+
+rule "10-19 units"
+	when
+		$dealer : Dealer(attainment >= 10 && <= 19)
+		$lancers: Double() from accumulate (v : Vehicle (model == 'Lancer'),count (v))
+		$vehicles : Double() from accumulate (v : Vehicle (model != 'Raiders' && != 'Endeavor'),count (v))
+	then 
+		#actions
+		//retract($dealer);
+		$dealer.checkAndSetTotalAward(100 * $lancers + 400 * ($vehicles - $lancers));
+		System.out.println(drools.rule.name);;
+end
+
+rule "20-29 units"
+	when
+		$dealer : Dealer(attainment >= 20 && <= 29)
+		$lancers: Double() from accumulate (v : Vehicle (model == 'Lancer'),count (v))
+		$vehicles : Double() from accumulate (v : Vehicle (model != 'Raiders' && != 'Endeavor'),count (v))
+	then 
+		#actions
+		//retract($dealer);
+		$dealer.checkAndSetTotalAward(200 * $lancers + 800 * ($vehicles - $lancers));
+		System.out.println(drools.rule.name);;
+end
+
+rule "30-39 units"
+	when
+		$dealer : Dealer(attainment >= 30 && <= 39)
+		$lancers: Double() from accumulate (v : Vehicle (model == 'Lancer'),count (v))
+		$vehicles : Double() from accumulate (v : Vehicle (model != 'Raiders' && != 'Endeavor'),count (v))
+	then 
+		#actions
+		//retract($dealer);
+		$dealer.checkAndSetTotalAward(300 * $lancers + 1200 * ($vehicles - $lancers));
+		System.out.println(drools.rule.name);;
+end
+
+rule "40 units and greater"
+	when
+		$dealer : Dealer(attainment >= 40)
+		$lancers: Double() from accumulate (v : Vehicle (model == 'Lancer'),count (v))
+		$vehicles : Double() from accumulate (v : Vehicle (model != 'Raiders' && != 'Endeavor'),count (v))
+	then 
+		#actions
+		//retract($dealer);
+		$dealer.checkAndSetTotalAward(400 * $lancers + 1600 * ($vehicles - $lancers));
+		System.out.println(drools.rule.name);
+end

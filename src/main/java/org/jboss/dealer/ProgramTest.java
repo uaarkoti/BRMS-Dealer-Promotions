@@ -14,6 +14,7 @@ import org.drools.event.rule.DebugWorkingMemoryEventListener;
 import org.drools.io.ResourceFactory;
 import org.drools.logger.KnowledgeRuntimeLogger;
 import org.drools.logger.KnowledgeRuntimeLoggerFactory;
+import org.drools.runtime.StatefulKnowledgeSession;
 import org.drools.runtime.StatelessKnowledgeSession;
 
 /**
@@ -92,6 +93,10 @@ public class ProgramTest {
 		Vehicle v9 = new Vehicle("Lancer");
 		StatelessKnowledgeSession ksession = kbase
 				.newStatelessKnowledgeSession();
+		
+//		StatefulKnowledgeSession ssession = kbase.newStatefulKnowledgeSession();
+//		ssession.dispose();
+		
 		KnowledgeRuntimeLogger logger = KnowledgeRuntimeLoggerFactory
 				.newFileLogger(ksession, "/Users/uaarkoti/case3");
 		//ksession.addEventListener(new DebugAgendaEventListener());
@@ -99,7 +104,6 @@ public class ProgramTest {
 
 		ksession.execute(Arrays.asList(new Object[] { d, v1, v2, v3, v4, v5,
 				v6, v7, v8, v9 }));
-
 		System.out.println(d);
 		logger.close();
 	}

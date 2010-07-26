@@ -1,0 +1,39 @@
+#created on: Jul 22, 2010
+package org.jboss.dealer
+
+
+
+rule "Check date validity"
+	salience 10
+	when 
+		date range 
+	then 
+		retract
+end
+
+
+rule "A stand alone rule"
+	no-loop
+	salience 10
+	when
+		#conditions
+		v: vehicle(model == 'Lancer')
+		d: Dealer()
+		p: Program(date > "07-22-2010" && date < "08-22-2010") 
+	then 
+		#actions
+		d.setReward(1000);
+		update(d);
+end
+
+rule "add reward"
+	when
+		v:vehicle(model == "Lancer")
+	then
+		d.setReward(2000);
+		update(d);
+end
+
+rule "Check for rewards over 1000"
+	
+end

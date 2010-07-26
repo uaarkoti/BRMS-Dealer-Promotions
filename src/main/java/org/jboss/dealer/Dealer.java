@@ -8,6 +8,10 @@ public class Dealer {
 	private double attainment;
 	private double totalAward;
 	
+	public Dealer() {
+		
+	}
+	
 	public Dealer(String name, double objective, double attainment) {
 		this.name = name;
 		this.objective = objective;
@@ -43,6 +47,14 @@ public class Dealer {
 	}
 	public void setTotalAward(double totalAward) {
 		this.totalAward = totalAward;
+	}
+	
+	public void checkAndSetTotalAward(double totalAward) {
+		//System.out.println("Current TotalAward = " + this.totalAward + " New TotalAward = " + totalAward);
+		if (this.totalAward < totalAward) {
+			this.totalAward = totalAward;
+		}
+		//System.out.println("Final Total Award = " + this.totalAward);
 	}
 	
 	@Override

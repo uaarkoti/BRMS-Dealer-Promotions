@@ -1,16 +1,22 @@
 package org.jboss.dealer;
 
 import org.drools.RuleBase;
+
 import org.drools.agent.RuleAgent;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
+
+import static org.testng.AssertJUnit.assertEquals;
 
 public class DealerProgramTest {
 	
 	RuleBase kbase;
 	
 	@Test
-	public void f() {
+	public void test5() {
+		Dealer d = new Dealer("Dealer 5", 40, 52);
+		kbase.newStatelessSession().execute(new Object[] { d, new Vehicle("Lancer"), new Vehicle("Lancer"), new Vehicle("Lancer"), new Vehicle("Lancer"), new Vehicle("EVO") });
+		assertEquals(d.getTotalAward(), 3200.0);
 	}
 
 	@BeforeSuite

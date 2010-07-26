@@ -1,11 +1,10 @@
 #created on: Jul 19, 2010
 package org.jboss.dealer
 
+dialect "mvel" 
 expander Programs.dsl
 
 rule "0 to 90 percent and 0-9 units"
-	dialect "mvel"
-
 	when
 		Dealer attainment percentage greater than 0 and less than 0.9 and attainment quantity greater than 0 and less than 9
 		Calculate number of Lancers
@@ -17,7 +16,8 @@ rule "0 to 90 percent and 0-9 units"
 end
 
 rule "0-90 percent and 10-19 units"
-	dialect "mvel"
+	date-effective "dd-MMM-yyyy"
+	date-expires "dd-MMM-yyyy"
 
 	when
 		Dealer attainment percentage greater than 0 and less than 0.9 and attainment quantity greater than 10 and less than 19

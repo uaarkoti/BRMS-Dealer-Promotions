@@ -100,7 +100,7 @@ public class TestProgramA {
 		logger.close();
 		System.out.println(d);
 		
-		assertEquals(19200.0, d.getTotalAward());
+		assertEquals(16800.0, d.getTotalAward());
 
 	}
 
@@ -128,10 +128,10 @@ public class TestProgramA {
 	@BeforeSuite
 	public void beforeSuite() {
 		KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
-		kbuilder.add(ResourceFactory.newClassPathResource("Programs.dsl"), ResourceType.DSL);
-		kbuilder.add(ResourceFactory.newClassPathResource("February2009StairstepNationalProgram.dslr"),
-						ResourceType.DSLR);
-		
+		//kbuilder.add(ResourceFactory.newClassPathResource("Programs.dsl"), ResourceType.DSL);
+		//kbuilder.add(ResourceFactory.newClassPathResource("February2009StairstepNationalProgram.dslr"),
+		//				ResourceType.DSLR);
+		kbuilder.add(ResourceFactory.newClassPathResource("NewProgramLogic.drl"), ResourceType.DRL);
 		KnowledgeBuilderErrors errors = kbuilder.getErrors();
 		if (errors.size() > 0) {
 			for (KnowledgeBuilderError error : errors) {
